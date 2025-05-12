@@ -10,8 +10,16 @@ YELLOW='\033[1;33m'
 NC='\033[0m'
 clear
 
+echo -ne "${CYAN}Iniciando: "
+for i in $(seq 1 30); do
+  echo -ne "."
+  sleep 0.1
+done
+echo -e "${GREEN} [OK]${NC}"
+clear
+
 echo -e "${CYAN}===========================================${NC}"
-echo -e "${GREEN}     Instalador automatico Zsh por 404${NC}"
+echo -e "${GREEN}      Personalizacion Termux por 404${NC}"
 echo -e "${CYAN}===========================================${NC}"
 sleep 1
 
