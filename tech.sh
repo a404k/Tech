@@ -50,8 +50,8 @@ clear
 print_step "Copiando fuente de letras (font.ttf)..."
 sleep 1
 mkdir -p ~/.termux
-if [ -f "$SCRIPT_DIR/font.ttf" ]; then
-  cp "$SCRIPT_DIR/font.ttf" ~/.termux/font.ttf
+if [ -f "font.ttf" ]; then
+  cp "font.ttf" ~/.termux/font.ttf
 else
   echo -e "${RED}ERROR: No se encontró la fuente en /font.ttf${NC}"
   exit 1
