@@ -50,19 +50,10 @@ clear
 print_step "Copiando fuente de letras (font.ttf)..."
 sleep 1
 mkdir -p ~/.termux
-if [ -f "$SCRIPT_DIR/Fuentes/font.ttf" ]; then
-  cp "$SCRIPT_DIR/Fuentes/font.ttf" ~/.termux/font.ttf
+if [ -f "$SCRIPT_DIR/font.ttf" ]; then
+  cp "$SCRIPT_DIR/font.ttf" ~/.termux/font.ttf
 else
-  echo -e "${RED}ERROR: No se encontró la fuente en ./Fuentes/font.ttf${NC}"
-  exit 1
-fi
-
-sleep 1
-if [ -f "$SCRIPT_DIR/bin/tech" ]; then
-  mv "$SCRIPT_DIR/bin/tech" ~/.termux/tech
-  chmod +x ~/.termux/tech
-else
-  echo -e "${RED}ERROR: No se encontró el archivo tech en ./bin/tech${NC}"
+  echo -e "${RED}ERROR: No se encontró la fuente en /font.ttf${NC}"
   exit 1
 fi
 
@@ -89,7 +80,7 @@ alias update='pkg update && pkg upgrade -y'
 alias e='exit'
 alias ..='cd ..'
 alias ...='cd ../..'
-alias home='cd ~'
+alias home='cd 
 alias ls='ls --color=auto'
 alias ll='ls -la'
 alias l='ls -lh'
