@@ -1,7 +1,7 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
 # Autor: 404 (creador del script)
-# Descripción: Instalación automática de Zsh personalizado para Termux
+# Descripcion: Instalacion automatica de Zsh personalizado para Termux
 
 RED='\033[1;31m'
 GREEN='\033[1;32m'
@@ -11,7 +11,7 @@ NC='\033[0m'
 clear
 
 echo -e "${CYAN}===========================================${NC}"
-echo -e "${GREEN}     Instalador automático Zsh por 404${NC}"
+echo -e "${GREEN}     Instalador automatico Zsh por 404${NC}"
 echo -e "${CYAN}===========================================${NC}"
 sleep 1
 
@@ -21,7 +21,13 @@ print_step() {
   echo -e "${CYAN}===========================================${NC}"
 }
 
-SCRIPT_DIR="${0%/*}"
+SCRIPT_PATH="$(realpath "$0")"
+SCRIPT_DIR="$(dirname "$SCRIPT_PATH")"
+
+cd "$SCRIPT_DIR" || {
+  echo -e "${RED}Error: No se pudo cambiar al directorio del script.${NC}"
+  exit 1
+}
 
 print_step "Actualizando paquetes..."
 sleep 1
@@ -29,7 +35,7 @@ yes|pkg update -y && yes|pkg upgrade -y && clear
 
 print_step "Instalando dependencias..."
 sleep 1
-pkg install -y zsh git curl wget tsu python zoxide neofetch && clear
+pkg install -y zsh git curl wget tsu python zoxide neofetch lsd bat && clear
 
 print_step "Configurando Zsh como shell predeterminado..."
 chsh -s zsh
@@ -50,10 +56,19 @@ clear
 print_step "Copiando fuente de letras (font.ttf)..."
 sleep 1
 mkdir -p ~/.termux
-if [ -f "font.ttf" ]; then
-  cp "font.ttf" ~/.termux/font.ttf
+if [ -f "$SCRIPT_DIR/font.ttf" ]; then
+  cp "$SCRIPT_DIR/font.ttf" ~/.termux/font.ttf
 else
-  echo -e "${RED}ERROR: No se encontró la fuente en /font.ttf${NC}"
+  echo -e "${RED}ERROR: No se encontró la fuente font.ttf${NC}"
+  exit 1
+fi
+
+print_step "Copiando configuración de neofetch (config.conf)..."
+mkdir -p ~/.config/neofetch
+if [ -f "$SCRIPT_DIR/config.conf" ]; then
+  cp "$SCRIPT_DIR/config.conf" ~/.config/neofetch/config.conf
+else
+  echo -e "${RED}ERROR: No se encontró config.conf${NC}"
   exit 1
 fi
 
@@ -80,8 +95,8 @@ alias update='pkg update && pkg upgrade -y'
 alias e='exit'
 alias ..='cd ..'
 alias ...='cd ../..'
-alias home='cd'
-alias ls='ls --color=auto'
+alias home='cd ~'
+alias ls='lsd'
 alias ll='ls -la'
 alias l='ls -lh'
 alias c='clear'
@@ -101,7 +116,6 @@ neofetch
 EOF
 )
 
-
 if ! grep -q "alias update='pkg update" ~/.zshrc; then
   echo "$ZSHRC_CONTENT" >> ~/.zshrc
 fi
@@ -111,18 +125,18 @@ source ~/.zshrc
 clear
 
 echo -e "\n${YELLOW}Comandos rápidos que puedes usar ahora:${NC}"
-echo -e "${CYAN}- update${NC}      → Actualiza todos los paquetes de Termux"
-echo -e "${CYAN}- e${NC}           → Cierra el terminal"
-echo -e "${CYAN}- .. / ...${NC}    → Sube una o dos carpetas"
-echo -e "${CYAN}- home${NC}        → Va a tu carpeta principal"
-echo -e "${CYAN}- ls / ll / l${NC} → Lista archivos (detallado, ocultos, legible)"
-echo -e "${CYAN}- c${NC}           → Limpia la pantalla"
-echo -e "${CYAN}- gs${NC}          → Ver el estado actual en Git"
-echo -e "${CYAN}- ga${NC}          → Añadir todos los cambios"
-echo -e "${CYAN}- gc${NC}          → Crear un commit"
-echo -e "${CYAN}- gp${NC}          → Subir cambios a GitHub"
-echo -e "${CYAN}- gl${NC}          → Ver historial de commits"
-echo -e "${CYAN}- p / py${NC}      → Ejecutar Python 2 o 3"
+echo -e "${CYAN}- update${NC}      ➤ Actualiza todos los paquetes de Termux"
+echo -e "${CYAN}- e${NC}           ➤ Cierra el terminal"
+echo -e "${CYAN}- .. / ...${NC}    ➤ Sube una o dos carpetas"
+echo -e "${CYAN}- home${NC}        ➤ Va a tu carpeta principal"
+echo -e "${CYAN}- ls / ll / l${NC} ➤ Lista archivos (detallado, ocultos, legible)"
+echo -e "${CYAN}- c${NC}           ➤ Limpia la pantalla"
+echo -e "${CYAN}- gs${NC}          ➤ Ver el estado actual en Git"
+echo -e "${CYAN}- ga${NC}          ➤ Añadir todos los cambios"
+echo -e "${CYAN}- gc${NC}          ➤ Crear un commit"
+echo -e "${CYAN}- gp${NC}          ➤ Subir cambios a GitHub"
+echo -e "${CYAN}- gl${NC}          ➤ Ver historial de commits"
+echo -e "${CYAN}- p / py${NC}      ➤ Ejecutar Python 2 o 3"
 
 echo -e "\n${GREEN}✔ Instalación completa. Script creado por 404.${NC}"
 echo -e "${CYAN}Reinicia Termux para aplicar la fuente y usar tu nuevo entorno Zsh.${NC}"
