@@ -80,7 +80,7 @@ alias update='pkg update && pkg upgrade -y'
 alias e='exit'
 alias ..='cd ..'
 alias ...='cd ../..'
-alias home='cd 
+alias home='cd'
 alias ls='ls --color=auto'
 alias ll='ls -la'
 alias l='ls -lh'
@@ -92,10 +92,6 @@ alias gp='git push'
 alias gl='git log --oneline --graph --decorate --all'
 alias p='python'
 alias py='python3'
-
-if [ -f ~/.termux/tech ]; then
-  ~/.termux/tech
-fi
 
 source $ZSH_CUSTOM/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $ZSH_CUSTOM/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
