@@ -43,7 +43,7 @@ yes|pkg update -y && yes|pkg upgrade -y && clear
 
 print_step "Instalando dependencias..."
 sleep 1
-pkg install -y zsh git curl wget tsu python zoxide neofetch lsd bat && clear
+pkg install -y zsh git curl wget tsu python zoxide neofetch lsd bat nodejs && npm install -g bash-obfuscate && clear
 
 print_step "Configurando Zsh como shell predeterminado..."
 chsh -s zsh
