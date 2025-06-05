@@ -100,6 +100,7 @@ plugins=(
 eval "$(zoxide init zsh)"
 
 alias update='pkg update && pkg upgrade -y'
+alias ofuscar='bash-obfuscate'
 alias e='exit'
 alias ..='cd ..'
 alias ...='cd ../..'
