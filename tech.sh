@@ -7,12 +7,12 @@ Y='\033[1;33m'
 NC='\033[0m'
 
 clear
-echo -ne "Iniciando: "
+echo -ne "${R}Iniciando:${NC} "
 for i in $(seq 1 30); do
-    echo -ne "."
+    echo -ne "${Y}.${NC}"
     sleep 0.1
 done
-echo -e " [OK]"
+echo -e " ${G}[OK]${NC}"
 
 clear
 
@@ -27,7 +27,7 @@ p "Actualizando paquetes..."
 yes | pkg update && yes | pkg upgrade
 
 p "Instalando dependencias..."
-yes | pkg install wget git python tsu zsh nano lsd bat nodejs
+yes | pkg install wget git python tsu zsh nano lsd bat nodejs neofetch
 
 if ! command -v npm >/dev/null; then
     echo -e "${R}npm no está instalado. Algo falló.${NC}"
