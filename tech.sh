@@ -12,6 +12,7 @@ for i in $(seq 1 30); do
     echo -ne "${Y}.${NC}"
     sleep 0.1
 done
+echo -e " ${G}[OK]${NC}"
 
 clear
 
@@ -61,20 +62,20 @@ cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
 
 p "Instalando plugins..."
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.oh-my-zsh/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-history-substring-search ~/.oh-my-zsh/plugins/zsh-history-substring-search
 git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/plugins/zsh-completions
-git clone https://github.com/zdharma-continuum/fast-syntax-highlighting ~/.oh-my-zsh/custom/plugins/fast-syntax-highlighting
 
 p "Modificando .zshrc..."
 
-cat >> ~/.zshrc << 'EOF'
+cat > ~/.zshrc << 'EOF'
 
 plugins=(
   git
   zsh-completions
   zsh-history-substring-search
   zsh-autosuggestions
-  fast-syntax-highlighting
+  zsh-syntax-highlighting
   extract
   sudo
 )
