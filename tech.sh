@@ -47,6 +47,9 @@ else
     exit 1
 fi
 
+p "Eliminando mensaje de Termux..."
+rm -f $PREFIX/etc/motd
+
 p "Configurando Neofetch..."
 mkdir -p ~/.config/neofetch
 [ -f "config.conf" ] && cp config.conf ~/.config/neofetch/config.conf
@@ -88,6 +91,15 @@ if [ -f "AEF" ]; then
     chmod +777 /data/data/com.termux/files/usr/bin/AEF
 else
     echo -e "${R}ERROR: No se encontró el archivo AEF en esta carpeta.${NC}"
+fi
+
+p "Estableciendo ZSH como shell predeterminado..."
+
+PASSWD="$PREFIX/etc/passwd"
+USER=$(whoami)
+
+if grep -q "^${USER}:" "$PASSWD"; then
+    sed -i "s|:/data/data/com.termux/files/usr/bin/login|:/data/data/com.termux/files/usr/bin/zsh|" "$PASSWD"
 fi
 
 p "Limpiando historial..."
