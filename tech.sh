@@ -67,7 +67,7 @@ git clone https://github.com/zdharma-continuum/fast-syntax-highlighting ~/.oh-my
 
 p "Modificando .zshrc..."
 
-cat > ~/.zshrc << 'EOF'
+cat >> ~/.zshrc << 'EOF'
 
 plugins=(
   git
