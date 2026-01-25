@@ -68,7 +68,10 @@ git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/plugins/zsh-
 
 p "Modificando .zshrc..."
 
-cat >> ~/.zshrc << 'EOF'
+cat > ~/.zshrc << 'EOF'
+
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="robbyrussell"
 
 plugins=(
   git
@@ -79,7 +82,7 @@ plugins=(
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
-
+source $ZSH/oh-my-zsh.sh
 neofetch
 
 alias update='pkg update && pkg upgrade -y'
