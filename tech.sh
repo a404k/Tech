@@ -22,9 +22,10 @@ p() {
     echo -e "${C}┃  ➤ $t${NC}"
     echo -e "${C}┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${NC}"
 }
-
+clear
 p "Actualizando paquetes..."
 yes | pkg update && yes | pkg upgrade
+clear
 
 p "Instalando dependencias..."
 yes | pkg install wget git python tsu zsh nano lsd bat nodejs neofetch
@@ -33,9 +34,10 @@ if ! command -v npm >/dev/null; then
     echo -e "${R}npm no está instalado. Algo falló.${NC}"
     exit 1
 fi
-
+clear
 p "Instalando paquetes npm..."
 npm install -g bash-obfuscate
+clear
 
 p "Instalando configuracion de Termux..."
 mkdir -p ~/.termux
@@ -46,26 +48,26 @@ else
     echo -e "${R}ERROR: No se encontro la fuente font.ttf${NC}"
     exit 1
 fi
-
+clear
 p "Eliminando mensaje de Termux..."
 rm -f $PREFIX/etc/motd
-
+clear
 p "Configurando Neofetch..."
 mkdir -p ~/.config/neofetch
 [ -f "config.conf" ] && cp config.conf ~/.config/neofetch/config.conf
 [ -f "ascii.txt" ] && cp ascii.txt ~/.config/neofetch/ascii.txt
-
+clear
 p "Instalando Oh-My-Zsh..."
 git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
 
 cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
-
+clear
 p "Instalando plugins..."
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.oh-my-zsh/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-history-substring-search ~/.oh-my-zsh/plugins/zsh-history-substring-search
 git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/plugins/zsh-completions
-
+clear
 p "Modificando .zshrc..."
 
 cat > ~/.zshrc << 'EOF'
@@ -129,7 +131,7 @@ rm -rf ~/.bash_history
 clear
 echo -e "${G}"
 echo -e "✔ Instalación completa.."
-echo -e "Reinicia Termux para aplicar la fuente."
+echo -e "Reinicia Termux..."
 echo -e "Escribe ${Y}help${G} para ver los nuevos comandos."
 echo -e "${NC}"
 
