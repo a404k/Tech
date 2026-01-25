@@ -74,10 +74,10 @@ plugins=(
   git
   zsh-completions
   zsh-history-substring-search
-  zsh-autosuggestions
-  zsh-syntax-highlighting
   extract
   sudo
+  zsh-autosuggestions
+  zsh-syntax-highlighting
 )
 
 neofetch
